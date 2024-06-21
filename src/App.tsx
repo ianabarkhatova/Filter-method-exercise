@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import {NewComponent} from "./NewComponent";
 
 type FilterPropsType = 'all' | 'dollar' | 'ruble'
 
@@ -17,7 +18,7 @@ function App() {
     ])
 
 
-const[filter, setFilter] = useState<FilterPropsType>("all")
+    const [filter, setFilter] = useState<FilterPropsType>("all")
 
     let currentMoney = money
 
@@ -34,26 +35,7 @@ const[filter, setFilter] = useState<FilterPropsType>("all")
     }
 
     return (
-        <>
-            <ul>
-                {currentMoney.map((m, index) => {
-                    return (
-                        <li key={index}>
-                            <span>{m.banknote}</span>
-                            <span>{m.nominal}</span>
-                            <span>{m.number}</span>
-                        </li>
-                    )
-                })}
-            </ul>
-
-            <div style={{marginLeft: "35px"}}>
-                <button onClick={() => onClickFilterHandler("all")}>all</button>
-                <button onClick={() => onClickFilterHandler("ruble")}>ruble</button>
-                <button onClick={() => onClickFilterHandler("dollar")}>dollar</button>
-            </div>
-        </>
-
+        <NewComponent currentMoney={currentMoney} onClickFilterHandler={onClickFilterHandler}/>
     );
 }
 
